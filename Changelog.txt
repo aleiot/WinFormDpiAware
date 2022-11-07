@@ -1,0 +1,7 @@
+﻿1.0.0.0 (10-01-2020)
+- First release on DevOps server
+- Added new project to implement DPI awareness for WeifenLuo docking contents
+- Moved project Elettric80.Common.DpiAwareness in a solution subfolder
+- Renamed solution to WinFormDpiAware
+- Added class DockingDpiHelper to implement missing methods to support dpi awareness for WeifenLuo DockContent
+- Added WinForms test project
