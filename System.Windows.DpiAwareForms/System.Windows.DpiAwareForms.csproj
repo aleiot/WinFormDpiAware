@@ -1,19 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+      <TargetFramework>net9.0-windows10.0.17763.0</TargetFramework>
+      <OutputType>Library</OutputType>
+      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+      <UseWindowsForms>true</UseWindowsForms>
+      <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+      <Title>DPI-Aware WinForms</Title>
+      <Authors>Alessio Iotti</Authors>
+      <Company />
+      <Product />
+      <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
+    
   <ItemGroup>
-    <Compile Update="DpiAwareUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+      <Compile Update="DpiAwareUserControl.cs">
+          <SubType>UserControl</SubType>
+      </Compile>
   </ItemGroup>
+    
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.1" />
+      <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+      <PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.3" />
   </ItemGroup>
+    
 </Project>

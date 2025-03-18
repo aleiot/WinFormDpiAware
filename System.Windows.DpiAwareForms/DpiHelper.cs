@@ -17,8 +17,8 @@ namespace System.Windows.DpiAwareForms
         /// </summary>
         private SizeF _size;
 
-        public float Width => _size.Width;
-        public float Height => _size.Height;
+        public readonly float Width => _size.Width;
+        public readonly float Height => _size.Height;
 
         public static DivisibleSizeF operator /(DivisibleSizeF a, DivisibleSizeF b)
         {

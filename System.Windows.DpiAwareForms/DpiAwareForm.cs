@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -21,6 +22,7 @@ namespace System.Windows.DpiAwareForms
         private readonly DpiHelper _dpiHelp;
         private readonly Placement _place;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool UpdateLocked { get; set; } = false;
 
         protected DpiAwareForm()
