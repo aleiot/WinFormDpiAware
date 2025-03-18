@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Windows.DpiAwareForms;
+﻿using aleiot.DpiAwareWinForms;
+using System.Linq;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 

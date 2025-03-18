@@ -9,7 +9,7 @@
   </PropertyGroup>
     
   <ItemGroup>
-      <ProjectReference Include="..\System.Windows.DpiAwareForms\System.Windows.DpiAwareForms.csproj" />
+      <ProjectReference Include="..\System.Windows.DpiAwareForms\aleiot.DpiAwareWinForms.csproj" />
   </ItemGroup>
     
   <ItemGroup>

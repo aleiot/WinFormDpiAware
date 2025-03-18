@@ -1,118 +1,118 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace System.Windows.DpiAwareForms
+namespace aleiot.DpiAwareWinForms;
+
+public enum Placement
 {
-    public enum Placement
+    Undefined,
+    Center,
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight
+}
+
+public partial class DpiAwareForm : Form
+{
+    private const int Tolerance = 100;
+
+    private readonly DpiHelper _dpiHelp;
+    private readonly Placement _place;
+
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    public bool UpdateLocked { get; set; } = false;
+
+    protected DpiAwareForm()
+        : this(Placement.Center)
+    { }
+
+    protected DpiAwareForm(Placement place)
     {
-        Undefined,
-        Center,
-        TopLeft,
-        TopRight,
-        BottomLeft,
-        BottomRight
+        DoubleBuffered = true;
+
+        _place = place;
+        _dpiHelp = new DpiHelper(this);
+
+        InitializeComponent();
     }
 
-    public partial class DpiAwareForm : Form
+    /// <summary>
+    /// If helped Control is a Form, places it centered in the screen where first form of
+    /// the application has been opened
+    /// </summary>
+    /// <param name="sender">Control being loaded</param>
+    /// <param name="e">Arguments (not used)</param>
+    protected void OnLoad(object sender, EventArgs e)
     {
-        private const int Tolerance = 100;
+        if (!DesignMode) ScaleOnCreation();
 
-        private readonly DpiHelper _dpiHelp;
-        private readonly Placement _place;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public bool UpdateLocked { get; set; } = false;
-
-        protected DpiAwareForm()
-            : this(Placement.Center)
-        { }
-
-        protected DpiAwareForm(Placement place)
+        try
         {
-            DoubleBuffered = true;
+            // If user has not defined a placement, the value defined in form properties is used
+            if (_place == Placement.Undefined) return;
 
-            _place = place;
-            _dpiHelp = new DpiHelper(this);
-
-            InitializeComponent();
-        }
-
-        /// <summary>
-        /// If helped Control is a Form, places it centered in the screen where first form of
-        /// the application has been opened
-        /// </summary>
-        /// <param name="sender">Control being loaded</param>
-        /// <param name="e">Arguments (not used)</param>
-        protected void OnLoad(object sender, EventArgs e)
-        {
-            if (!DesignMode) ScaleOnCreation();
-
-            try
+            if (!DesignMode && _dpiHelp.FirstOpenedForm != null)
             {
-                // If user has not defined a placement, the value defined in form properties is used
-                if (_place == Placement.Undefined) return;
+                // Screen where owner Control of this form is placed
+                var ownerScreen = Screen.FromControl(_dpiHelp.FirstOpenedForm);
+                // Screen where this form needs to be placed
+                var myScreen = Screen.AllScreens.FirstOrDefault(s => s.Equals(ownerScreen)) ?? ownerScreen;
+                int leftStep = myScreen.WorkingArea.X,
+                    topStep = myScreen.WorkingArea.Y;
 
-                if (!DesignMode && _dpiHelp.FirstOpenedForm != null)
+                switch (_place)
                 {
-                    // Screen where owner Control of this form is placed
-                    var ownerScreen = Screen.FromControl(_dpiHelp.FirstOpenedForm);
-                    // Screen where this form needs to be placed
-                    var myScreen = Screen.AllScreens.FirstOrDefault(s => s.Equals(ownerScreen)) ?? ownerScreen;
-                    int leftStep = myScreen.WorkingArea.X,
-                        topStep = myScreen.WorkingArea.Y;
-
-                    switch (_place)
-                    {
-                        case Placement.TopLeft:
-                            leftStep += Tolerance;
-                            topStep += Tolerance;
-                            break;
-                        case Placement.TopRight:
-                            leftStep += myScreen.WorkingArea.Width - Width - Tolerance;
-                            topStep += Tolerance;
-                            break;
-                        case Placement.BottomLeft:
-                            leftStep += Tolerance;
-                            topStep += myScreen.WorkingArea.Height - Height - Tolerance;
-                            break;
-                        case Placement.BottomRight:
-                            leftStep += myScreen.WorkingArea.Width - Width - Tolerance;
-                            topStep += myScreen.WorkingArea.Height - Height - Tolerance;
-                            break;
-                        case Placement.Center:
-                            leftStep += myScreen.WorkingArea.Width / 2 - Width / 2;
-                            topStep += myScreen.WorkingArea.Height / 2 - Height / 2;
-                            break;
-                    }
-
-                    Left = leftStep;
-                    Top = topStep;
+                    case Placement.TopLeft:
+                        leftStep += Tolerance;
+                        topStep += Tolerance;
+                        break;
+                    case Placement.TopRight:
+                        leftStep += myScreen.WorkingArea.Width - Width - Tolerance;
+                        topStep += Tolerance;
+                        break;
+                    case Placement.BottomLeft:
+                        leftStep += Tolerance;
+                        topStep += myScreen.WorkingArea.Height - Height - Tolerance;
+                        break;
+                    case Placement.BottomRight:
+                        leftStep += myScreen.WorkingArea.Width - Width - Tolerance;
+                        topStep += myScreen.WorkingArea.Height - Height - Tolerance;
+                        break;
+                    case Placement.Center:
+                        leftStep += myScreen.WorkingArea.Width / 2 - Width / 2;
+                        topStep += myScreen.WorkingArea.Height / 2 - Height / 2;
+                        break;
                 }
-            }
-            catch (Exception)
-            {
-                Left = Width / 2;
-                Top = Height / 2;
+
+                Left = leftStep;
+                Top = topStep;
             }
         }
-
-        public void ScaleOnResize()
+        catch (Exception)
         {
-            if (InvokeRequired)
-                Invoke(new MethodInvoker(ScaleOnResize));
-            else
-                _dpiHelp.ScaleOnResize();
+            Left = Width / 2;
+            Top = Height / 2;
         }
+    }
 
-        private void ScaleOnCreation() => _dpiHelp.ScaleOnCreation();
+    public void ScaleOnResize()
+    {
+        if (InvokeRequired)
+            Invoke(new MethodInvoker(ScaleOnResize));
+        else
+            _dpiHelp.ScaleOnResize();
+    }
 
-        protected override void ScaleControl(SizeF factor, BoundsSpecified specified)
-        {
-            base.ScaleControl(factor, specified);
+    private void ScaleOnCreation() => _dpiHelp.ScaleOnCreation();
 
-            _dpiHelp.ScaleControl(factor);
-        }
+    protected override void ScaleControl(SizeF factor, BoundsSpecified specified)
+    {
+        base.ScaleControl(factor, specified);
+
+        _dpiHelp.ScaleControl(factor);
     }
 }

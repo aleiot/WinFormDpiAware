@@ -1,12 +1,11 @@
 ﻿using System.Windows.Forms;
 
-namespace System.Windows.DpiAwareForms
+namespace aleiot.DpiAwareWinForms;
+
+public partial class DpiAwareUserControl : UserControl
 {
-    public partial class DpiAwareUserControl : UserControl
+    public DpiAwareUserControl()
     {
-        public DpiAwareUserControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

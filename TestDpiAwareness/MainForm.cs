@@ -1,4 +1,4 @@
-﻿using System.Windows.DpiAwareForms;
+﻿using aleiot.DpiAwareWinForms;
 
 namespace TestDpiAwareness
 {

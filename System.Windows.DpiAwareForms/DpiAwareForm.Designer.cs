@@ -1,4 +1,4 @@
-﻿namespace System.Windows.DpiAwareForms
+﻿namespace aleiot.DpiAwareWinForms
 {
     partial class DpiAwareForm
     {
