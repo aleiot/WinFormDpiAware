@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    
+  <PropertyGroup>
+      <TargetFramework>net8.0-windows</TargetFramework>
+      <OutputType>WinExe</OutputType>
+      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+      <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+    
+  <ItemGroup>
+      <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+      <PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.3" />
+  </ItemGroup>
+    
+  <ItemGroup>
+      <ProjectReference Include="..\System.Windows.DpiAwareForms\System.Windows.DpiAwareForms.csproj" />
+      <ProjectReference Include="..\WeifenLuo.WinFormsUI.DpiAwareDocking\aleiot.WeifenLuo.WinFormsUI.Docking.DpiAwareness.csproj" />
+  </ItemGroup>
+    
+</Project>

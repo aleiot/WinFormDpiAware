@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    
+  <PropertyGroup>
+      <TargetFramework>net8.0-windows</TargetFramework>
+      <OutputType>Library</OutputType>
+      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+      <UseWindowsForms>true</UseWindowsForms>
+      <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+      <Title>DPI-Aware WinForms</Title>
+      <Authors>Alessio Iotti</Authors>
+  </PropertyGroup>
+    
+  <ItemGroup>
+      <Compile Update="DpiAwareUserControl.cs">
+          <SubType>UserControl</SubType>
+      </Compile>
+  </ItemGroup>
+    
+  <ItemGroup>
+      <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+      <PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.3" />
+  </ItemGroup>
+    
+</Project>
