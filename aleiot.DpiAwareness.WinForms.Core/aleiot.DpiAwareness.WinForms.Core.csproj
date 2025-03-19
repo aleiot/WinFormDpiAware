@@ -3,22 +3,36 @@
   <PropertyGroup>
       <TargetFramework>net8.0-windows</TargetFramework>
       <OutputType>Library</OutputType>
-      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
       <UseWindowsForms>true</UseWindowsForms>
+      <ImplicitUsings>enable</ImplicitUsings>
       <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
       <Title>DPI-Aware WinForms</Title>
       <Authors>Alessio Iotti</Authors>
+      <Version>1.1.1</Version>
+      <Description>Extension of Windows Forms to provide DPI-Awareness capabilities to Forms and UserControls.
+Simply let your classes derive from DpiAwareForm and DpiAwareUserControl.</Description>
+      <RepositoryUrl>https://github.com/aleiot/WinFormDpiAware</RepositoryUrl>
+      <PackageTags>DPI; WinForms; Extension</PackageTags>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <PackageLicenseFile>LICENSE</PackageLicenseFile>
+      <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+    
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
     
   <ItemGroup>
       <Compile Update="DpiAwareUserControl.cs">
           <SubType>UserControl</SubType>
       </Compile>
-  </ItemGroup>
-    
-  <ItemGroup>
-      <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-      <PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.3" />
   </ItemGroup>
     
 </Project>

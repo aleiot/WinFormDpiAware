@@ -3,14 +3,9 @@
   <PropertyGroup>
       <TargetFramework>net8.0-windows</TargetFramework>
       <OutputType>WinExe</OutputType>
-      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
       <UseWindowsForms>true</UseWindowsForms>
+      <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-    
-  <ItemGroup>
-      <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-      <PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.3" />
-  </ItemGroup>
     
   <ItemGroup>
       <ProjectReference Include="..\aleiot.DpiAwareness.WinForms.Core\aleiot.DpiAwareness.WinForms.Core.csproj" />
