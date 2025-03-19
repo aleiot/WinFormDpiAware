@@ -13,8 +13,8 @@
   </ItemGroup>
     
   <ItemGroup>
-      <ProjectReference Include="..\System.Windows.DpiAwareForms\System.Windows.DpiAwareForms.csproj" />
-      <ProjectReference Include="..\WeifenLuo.WinFormsUI.DpiAwareDocking\aleiot.WeifenLuo.WinFormsUI.Docking.DpiAwareness.csproj" />
+      <ProjectReference Include="..\aleiot.DpiAwareness.WinForms.Core\aleiot.DpiAwareness.WinForms.Core.csproj" />
+      <ProjectReference Include="..\aleiot.DpiAwareness.WinForms.WeifenLuo.Docking\aleiot.DpiAwareness.WinForms.WeifenLuo.Docking.csproj" />
   </ItemGroup>
     
 </Project>

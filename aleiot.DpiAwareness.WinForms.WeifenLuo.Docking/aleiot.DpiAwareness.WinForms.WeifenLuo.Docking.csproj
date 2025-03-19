@@ -8,7 +8,7 @@
   </PropertyGroup>
     
   <ItemGroup>
-      <ProjectReference Include="..\System.Windows.DpiAwareForms\aleiot.DpiAwareWinForms.csproj" />
+      <ProjectReference Include="..\aleiot.DpiAwareness.WinForms.Core\aleiot.DpiAwareness.WinForms.Core.csproj" />
   </ItemGroup>
     
   <ItemGroup>
