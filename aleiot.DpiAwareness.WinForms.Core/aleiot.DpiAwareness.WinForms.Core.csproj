@@ -8,7 +8,7 @@
       <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
       <Title>DPI-Aware WinForms</Title>
       <Authors>Alessio Iotti</Authors>
-      <Version>1.1.1</Version>
+      <Version>1.2.0</Version>
       <Description>Extension of Windows Forms to provide DPI-Awareness capabilities to Forms and UserControls.
 Simply let your classes derive from DpiAwareForm and DpiAwareUserControl.</Description>
       <RepositoryUrl>https://github.com/aleiot/WinFormDpiAware</RepositoryUrl>
@@ -16,6 +16,7 @@ Simply let your classes derive from DpiAwareForm and DpiAwareUserControl.</Descr
       <PackageReadmeFile>README.md</PackageReadmeFile>
       <PackageLicenseFile>LICENSE</PackageLicenseFile>
       <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+      <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
     
   <ItemGroup>
